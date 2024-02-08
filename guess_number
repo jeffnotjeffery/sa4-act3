@@ -1,4 +1,6 @@
 number = 10
+max_guesses = 3
+remaining_guesses = max_guesses
 
 print("I'm thinking of a number...")
 guess = input("What number am I thinking of? (Enter 'q' to quit) ")
@@ -8,9 +10,19 @@ while guess != 'q':
     if guess == number:
         print("Congratulations! You guessed the right number.")
         break
+    elif guess < number:
+        print("Sorry! Your guess was too low.")
     else:
-        print("Sorry! Try again.")
-        guess = input("What number am I thinking of? (Enter 'q' to quit) ")
+        print("Sorry! Your guess was too high.")
+
+    remaining_guesses -= 1
+    if remaining_guesses == 0:
+        print(f"Sorry! You've used up all {max_guesses} guesses. The number I was thinking of was {number}")
+        break
+    else:
+        print(f"You have {remaining_guesses} guesses left.")
+
+    guess = input("What number am I thinking of? (Enter 'q' to quit) ")
 
 if guess == 'q':
     print(f"The number I was thinking of was {number}.")
